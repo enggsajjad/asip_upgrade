@@ -1,0 +1,54 @@
+################################################################################
+##
+## Copyright (c) 1995-2002 Xilinx, Inc.  All rights reserved.
+##
+## opb_emc_v2_0_0.mpd
+##
+## Microprocessor Peripheral Definition
+##
+################################################################################
+
+PARAMETER VERSION = 2.0.0
+
+BEGIN opb_xsb300_ak4565, IPTYPE = PERIPHERAL
+OPTION IMP_NETLIST = TRUE
+OPTION HDL = VHDL
+#OPTION CORE_STATE = DEVELOPMENT
+
+# Define bus interface
+BUS_INTERFACE BUS=SOPB, BUS_STD=OPB, BUS_TYPE=SLAVE
+
+# Generics for vhdl or parameters for verilog
+PARAMETER C_OPB_AWIDTH = 32, DT=integer
+PARAMETER C_OPB_DWIDTH = 32, DT=integer
+PARAMETER C_BASEADDR = 0xFFFFFFFF, DT=std_logic_vector, MIN_SIZE=0x100, BUS=SOPB
+PARAMETER C_HIGHADDR = 0x00000000, DT=std_logic_vector, BUS=SOPB
+
+
+# Signals
+PORT OPB_Clk = "", DIR=IN, BUS=SOPB, SIGIS=CLK
+PORT OPB_Rst = OPB_Rst, DIR=IN, BUS=SOPB
+
+Port Interrupt ="", DIR=OUT, EDGE=RISING, SIGIS=INTERRUPT
+
+# OPB slave signals
+PORT OPB_ABus = OPB_ABus, DIR=IN, VEC=[0:C_OPB_AWIDTH-1], BUS=SOPB
+PORT OPB_BE = OPB_BE, DIR=IN, VEC=[0:C_OPB_DWIDTH/8-1], BUS=SOPB
+PORT OPB_DBus = OPB_DBus, DIR=IN, VEC=[0:C_OPB_DWIDTH-1], BUS=SOPB
+PORT OPB_RNW = OPB_RNW, DIR=IN, BUS=SOPB
+PORT OPB_select = OPB_select, DIR=IN, BUS=SOPB
+PORT OPB_seqAddr = OPB_seqAddr, DIR=IN, BUS=SOPB
+PORT UIO_DBus = Sl_DBus, DIR=OUT, VEC=[0:C_OPB_DWIDTH-1], BUS=SOPB
+PORT UIO_errAck = Sl_errAck, DIR=OUT, BUS=SOPB
+PORT UIO_retry = Sl_retry, DIR=OUT, BUS=SOPB
+PORT UIO_toutSup = Sl_toutSup, DIR=OUT, BUS=SOPB
+PORT UIO_xferAck = Sl_xferAck, DIR=OUT, BUS=SOPB
+
+PORT AU_CSN_N = "", DIR=OUT
+PORT AU_BCLK = "", DIR=OUT
+PORT AU_MCLK = "", DIR=OUT
+PORT AU_LRCK = "", DIR=OUT
+PORT AU_SDTI = "", DIR=OUT
+PORT AU_SDTO0 = "", DIR=IN
+
+END

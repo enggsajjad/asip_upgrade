@@ -1,0 +1,123 @@
+/*
+ * Instructions for the linker about where in memory to locate various
+ * portions of the program.  See "info ld" for details.
+ */
+
+/* List of memory blocks */
+MEMORY {
+  BRAM : ORIGIN = 0x00000000, LENGTH = 0x01000 /* On the FPGA */
+  SRAM : ORIGIN = 0x00860000, LENGTH = 0x20000 /* SRAM past the framebuffer */
+}
+
+/* Symbol where the program will start executing */
+ENTRY(_start)
+
+/* Instructions on where to locate each segment of the program */
+SECTIONS
+{
+
+  /*
+   * Critical code to place on the FPGA: initialization, interrupts, etc.
+   */
+
+  .bram_text : {
+	/usr/cad/xilinx/gnu/lib/gcc-lib/microblaze/2.95.3-4/crt0.o(.text)
+	/usr/cad/xilinx/gnu/lib/gcc-lib/microblaze/2.95.3-4/crtinit.o(.text)
+	./mymicroblaze/lib/libxil.a(.text)
+	./mymicroblaze/lib//libxil.a(.text)
+	c_source_files/isr.o(.text)
+  } > BRAM
+
+  /*
+   * The stack
+   */
+
+  . = ALIGN(4);
+  .stack : {
+     _STACK_SIZE = 0x200;
+     . += _STACK_SIZE;
+     . = ALIGN(4);
+  } > BRAM
+  _stack = .;  /* It starts here and grows downward */
+
+  /*
+   * Code to be placed in SRAM: the rest of the program
+   */
+
+  . = ALIGN(4);
+  .sram_text : {
+    *(.text)
+  } > SRAM
+
+  /*
+   * Small initialized read-only memory
+   */
+
+  . = ALIGN(8);
+  _ss_small = .;
+  .sdata2 . : {
+    *(.sdata2)
+  } > SRAM
+
+  /*
+   * Small initialized memory
+   */
+
+  . = ALIGN(8);
+  .sdata : {
+    *(.sdata)
+  } > SRAM
+
+  . = ALIGN(8);
+  _es_small = .;
+  _ssize_small = _es_small - _ss_small;
+  _SDA2_BASE_ = _ss_small + (_ssize_small / 2 );
+
+  /*
+   * Initialized read-only memory
+   */
+
+  . = ALIGN(4);
+  .rodata . : {
+    *(.rodata)
+  } > SRAM
+
+  /*
+   * Initialized memory
+   */
+
+  . = ALIGN(4);
+  .data : {
+    *(.data)
+  } > SRAM
+
+  /* SBSS and BSS */
+
+  . = ALIGN(8);
+  __sbss_start = .;
+  .sbss : {
+     *(.sbss)
+  } > SRAM
+  . = ALIGN(8);
+  __sbss_end = .;
+
+  __sbss_size = __sbss_end - __sbss_start;
+  _SDA_BASE_ = __sbss_start + (__sbss_size / 2);
+
+  /*
+   * The heap
+   */
+
+  . = ALIGN(4);
+  .sram_bss : {
+    __bss_start = .;
+    *(.bss)
+    *(COMMON)
+    . = ALIGN(4);
+    __bss_end = . ;
+    _heap = .;
+  } > SRAM
+
+  _end = .;
+
+}

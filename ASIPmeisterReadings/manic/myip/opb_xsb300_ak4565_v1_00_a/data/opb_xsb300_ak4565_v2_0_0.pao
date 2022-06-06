@@ -1,0 +1,13 @@
+################################################################################
+##
+## Copyright (c) 1995-2002 Xilinx, Inc.  All rights reserved.  Xilinx, Inc.
+##
+## MicroBlaze_Brd_ZBT_ClkGen_v2_0_0_a.pao
+##
+## Peripheral Analyze Order
+##
+################################################################################
+
+
+lib opb_xsb300_ak4565_v1_00_a opb_xsb300_ak4565
+lib opb_xsb300_ak4565_v1_00_a audio_ak4565

@@ -1,0 +1,105 @@
+net sys_clk period = 18.000;
+net pixel_clock period = 36.000;
+
+
+net FPGA_CLK1 loc="p77";
+
+net PB_A<0> loc="p83"; #BAR1
+net PB_A<1> loc="p84"; #BAR2
+net PB_A<2> loc="p86"; #BAR3
+net PB_A<3> loc="p87"; #BAR4
+net PB_A<4> loc="p88"; #BAR5
+net PB_A<5> loc="p89"; #BAR6
+net PB_A<6> loc="p93"; #BAR7
+net PB_A<7> loc="p94"; #BAR8
+net PB_A<8> loc="p100";
+net PB_A<9> loc="p101";
+net PB_A<10> loc="p102";
+net PB_A<11> loc="p109";
+net PB_A<12> loc="p110";
+net PB_A<13> loc="p111";
+net PB_A<14> loc="p112";
+net PB_A<15> loc="p113";
+net PB_A<16> loc="p114";
+net PB_A<17> loc="p115";
+net PB_A<18> loc="p121";
+net PB_A<19> loc="p122";
+
+net PB_D<0> loc="p153"; #LEFT_A
+net PB_D<1> loc="p145"; #LEFT_B
+net PB_D<2> loc="p141"; #LEFT_C
+net PB_D<3> loc="p135"; #LEFT_D
+net PB_D<4> loc="p126"; #LEFT_E
+net PB_D<5> loc="p120"; #LEFT_F
+net PB_D<6> loc="p116"; #LEFT_G
+net PB_D<7> loc="p108"; #LEFT_DP
+net PB_D<8> loc="p127"; #RIGHT_A
+net PB_D<9> loc="p129"; #RIGHT_B
+net PB_D<10> loc="p132"; #RIGHT_C
+net PB_D<11> loc="p133"; #RIGHT_D
+net PB_D<12> loc="p134"; #RIGHT_E
+net PB_D<13> loc="p136"; #RIGHT_F
+net PB_D<14> loc="p138"; #RIGHT_G
+net PB_D<15> loc="p139"; #RIGHT_DP
+
+
+net PB_LB_N loc="p140";	 #BAR9
+net PB_UB_N loc="p146";  #BAR10
+net PB_WE_N loc="p123";
+net PB_OE_N loc="p125";
+
+
+net RAM_CE_N loc="p147";
+
+
+
+net VIDOUT_CLK loc="p23";
+net VIDOUT_BLANK_N loc="p24";
+net VIDOUT_HSYNC_N loc="p8";
+net VIDOUT_VSYNC_N loc="p7";
+
+
+net VIDOUT_RCR<0> loc="p41";
+net VIDOUT_RCR<1> loc="p40";
+net VIDOUT_RCR<2> loc="p36";
+net VIDOUT_RCR<3> loc="p35";
+net VIDOUT_RCR<4> loc="p34";
+net VIDOUT_RCR<5> loc="p33";
+net VIDOUT_RCR<6> loc="p31";
+net VIDOUT_RCR<7> loc="p30";
+net VIDOUT_RCR<8> loc="p29";
+net VIDOUT_RCR<9> loc="p27";
+
+net VIDOUT_GY<0> loc="p9" ;
+net VIDOUT_GY<1> loc="p10";
+net VIDOUT_GY<2> loc="p11";
+net VIDOUT_GY<3> loc="p15";
+net VIDOUT_GY<4> loc="p16";
+net VIDOUT_GY<5> loc="p17";
+net VIDOUT_GY<6> loc="p18";
+net VIDOUT_GY<7> loc="p20";
+net VIDOUT_GY<8> loc="p21";
+net VIDOUT_GY<9> loc="p22";
+
+net VIDOUT_BCB<0> loc="p42";
+net VIDOUT_BCB<1> loc="p43";
+net VIDOUT_BCB<2> loc="p44";
+net VIDOUT_BCB<3> loc="p45";
+net VIDOUT_BCB<4> loc="p46";
+net VIDOUT_BCB<5> loc="p47";
+net VIDOUT_BCB<6> loc="p48";
+net VIDOUT_BCB<7> loc="p49";
+net VIDOUT_BCB<8> loc="p55";
+net VIDOUT_BCB<9> loc="p56";
+
+net RS232_TD loc="p71";
+net RS232_RD loc="p73";
+#net RS232_CTS loc="p69";
+#net RS232_RTS loc="p70";
+
+net AU_CSN_N loc="p165";
+net AU_BCLK loc="p166";
+net AU_MCLK loc="p167";
+net AU_LRCK loc="p168";
+net AU_SDTI loc="p169";
+net AU_SDTO0 loc="p173";

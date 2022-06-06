@@ -1,0 +1,7 @@
+BubbleSort: sorting...
+Array:
+4 6 7 21 23 42 45 54 
+63 75 77 78 86 92 99 235 
+342 346 352 634 
+Array Sorted: YES
+Number of cycles needed: 19770
